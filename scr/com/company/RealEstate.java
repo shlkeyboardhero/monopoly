@@ -1,8 +1,12 @@
 package com.company;
 
-public class Street extends RealEstate {
-
+public class RealEstate {
+    String name;
+    int cost;
+    int square;
     int rent;
+    boolean property = false;
+    int propertyOf;
 
     public boolean isProperty() {
         return property;
@@ -14,12 +18,5 @@ public class Street extends RealEstate {
             property = true;
             player.changeCash(-cost);
         }
-    }
-
-    public Street(String name, int cost, int square, int defRent){
-        this.name=name;
-        this.cost=cost;
-        this.square=square;
-        rent=defRent;
     }
 }
