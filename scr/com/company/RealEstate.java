@@ -1,7 +1,6 @@
 package com.company;
 
 public class RealEstate  extends Field {
-    String name;
     int cost;
     int rent;
     boolean property = false;
