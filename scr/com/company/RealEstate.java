@@ -1,12 +1,13 @@
 package com.company;
 
-public class RealEstate {
+public class RealEstate  extends Field {
     String name;
     int cost;
-    int square;
     int rent;
     boolean property = false;
     int propertyOf;
+
+
 
     public boolean isProperty() {
         return property;

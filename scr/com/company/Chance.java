@@ -1,7 +1,9 @@
 package com.company;
 
-public class Chance {
-    int square;
+public class Chance extends Field {
 
+
+
+    int square;
 
 }
