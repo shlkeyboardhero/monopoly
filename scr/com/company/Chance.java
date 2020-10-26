@@ -1,8 +1,7 @@
 package com.company;
 
+import java.util.ArrayList;
+
 public class Chance extends Field {
-
-
-    int square;
-
+    ArrayList<Chance> chanceArrayList = new ArrayList<>();
 }

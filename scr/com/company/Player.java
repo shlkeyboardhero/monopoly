@@ -1,5 +1,7 @@
 package com.company;
 
+import java.util.ArrayList;
+
 public class Player {
     private int totalCash;
     private int totalAssets;
@@ -22,6 +24,8 @@ public class Player {
     public void changeCash(int cash) {
         totalCash+=cash;
     }
+
+    ArrayList<RealEstate> propertiesList = new ArrayList<>();
 
     public int getTotalAssets() {
         return totalAssets;

@@ -17,6 +17,7 @@ public class RealEstate  extends Field {
             propertyOf = player.getPlayerID();
             property = true;
             player.changeCash(-cost);
+            player.propertiesList.add(RealEstate.this);
         }
     }
 }
