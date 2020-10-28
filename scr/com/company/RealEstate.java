@@ -6,15 +6,4 @@ public class RealEstate extends GameField {
     int rent;
     boolean property = false;
     int propertyOf;
-
-
-
-    public boolean isProperty() {
-        return property;
-    }
-
-
-
-
-
 }

@@ -98,7 +98,7 @@ public class Service {
         else
             System.out.println(playerArrayList.get(playerIndex).propertiesList);
 
-        if (!((RealEstate) squareArrayList.get(currentPosition)).isProperty()) {
+        if (!isProperty(((RealEstate) squareArrayList.get(currentPosition)))) {
             System.out.println("\nЖелаете купить данную недвижемость?\n [1] - DA [2] - NET");
 
             switch (scanner.nextInt()) {
