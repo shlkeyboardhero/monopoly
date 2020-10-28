@@ -1,6 +1,7 @@
 package com.company;
 
-public class RealEstate  extends Field {
+
+public class RealEstate extends GameField {
     int cost;
     int rent;
     boolean property = false;
@@ -12,12 +13,8 @@ public class RealEstate  extends Field {
         return property;
     }
 
-    public void setProperty(Player player) {
-        if (isProperty() == false){
-            propertyOf = player.getPlayerID();
-            property = true;
-            player.changeCash(-cost);
-            player.propertiesList.add(RealEstate.this);
-        }
-    }
+
+
+
+
 }

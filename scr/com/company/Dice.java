@@ -13,4 +13,6 @@ public class Dice {
         rnd = (int) (1 + Math.random() * 5);
         return rnd;
     }
+
+
 }

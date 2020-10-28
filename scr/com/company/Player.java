@@ -11,18 +11,21 @@ public class Player {
     private String name;
 
 
-
-    public Player(String name) {
+    public Player(int playerID, String name) {
         totalCash = 2500;
         this.name = name;
+        this.playerID = playerID;
+        spaceNum=0;
     }
 
     public int getCash() {
+
         return totalCash;
     }
 
     public void changeCash(int cash) {
-        totalCash+=cash;
+
+        totalCash += cash;
     }
 
     ArrayList<RealEstate> propertiesList = new ArrayList<>();
@@ -32,14 +35,17 @@ public class Player {
     }
 
     public void setTurn(boolean turn) {
+
         isTurn = turn;
     }
 
     public boolean isTurn() {
+
         return isTurn;
     }
 
     public int getSpaceNum() {
+
         return spaceNum;
     }
 
@@ -48,11 +54,17 @@ public class Player {
     }
 
     public int getPlayerID() {
+
         return playerID;
     }
 
     public void setPlayerID(int playerID) {
+
         this.playerID = playerID;
+    }
+
+    public String toString() {
+        return String.valueOf(playerID) + ' ' +  name;
     }
 
     public String getName() {
