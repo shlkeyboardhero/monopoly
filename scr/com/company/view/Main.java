@@ -15,7 +15,7 @@ public class Main {
 
 
         new Service().createFields(squareArrayList);
-        new Service().consoleRealization(playerArrayList, squareArrayList);
+        new ConsoleView().consoleRealization(playerArrayList, squareArrayList);
 
     }
 
