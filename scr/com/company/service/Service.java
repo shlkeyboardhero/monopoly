@@ -1,6 +1,7 @@
-package com.company;
+package com.company.service;
 
-import java.lang.reflect.Field;
+import com.company.model.*;
+
 import java.util.ArrayList;
 import java.util.Scanner;
 
@@ -72,7 +73,7 @@ public class Service {
     }
 
     private void step(ArrayList<Player> playerArrayList, ArrayList<GameField> squareArrayList, int queue) {
-        int diceSum = 9;//getDiceSum(); //getDiceSum() - для проверки цикла; 8 - для проверки ЖКХ (у них рента в 4 раза больше хода кубика);
+        int diceSum = 8; //getDiceSum() - для проверки цикла; 8 - для проверки ЖКХ (у них рента в 4 раза больше хода кубика);
         int playerIndex;
         int otherPlayerIndex;
         if (queue == 0) {
@@ -91,12 +92,12 @@ public class Service {
         System.out.println("Игрок №" + playerArrayList.get(playerIndex).getPlayerID() + " " + playerArrayList.get(playerIndex).getName() + "\n");
         System.out.println("Баланс: " + playerArrayList.get(playerIndex).getCash() + " " + "\n");
         int currentPosition = playerArrayList.get(playerIndex).getSpaceNum();
-        System.out.println("Текущая позиция: " + "[" + playerArrayList.get(playerIndex).getSpaceNum() + "] " + squareArrayList.get(currentPosition).name);
+        System.out.println("Текущая позиция: " + "[" + playerArrayList.get(playerIndex).getSpaceNum() + "] " + squareArrayList.get(currentPosition).getName());
         System.out.print("Текущие владения: ");
-        if (playerArrayList.get(playerIndex).propertiesList.isEmpty())
+        if (playerArrayList.get(playerIndex).getPropertiesList().isEmpty())
             System.out.println("Нету");
         else
-            System.out.println(playerArrayList.get(playerIndex).propertiesList);
+            System.out.println(playerArrayList.get(playerIndex).getPropertiesList());
 
         if (!isProperty(((RealEstate) squareArrayList.get(currentPosition)))) {
             System.out.println("\nЖелаете купить данную недвижемость?\n [1] - DA [2] - NET");
@@ -108,10 +109,10 @@ public class Service {
                     System.out.println("Игрок №" + playerArrayList.get(playerIndex).getPlayerID() + " " + playerArrayList.get(playerIndex).getName() + "\n");
                     System.out.println("Баланс: " + playerArrayList.get(playerIndex).getCash() + " " + "\n");
                     System.out.print("Текущие владения: ");
-                    if (playerArrayList.get(playerIndex).propertiesList.isEmpty())
+                    if (playerArrayList.get(playerIndex).getPropertiesList().isEmpty())
                         System.out.println("Нету");
                     else
-                        System.out.println(playerArrayList.get(playerIndex).propertiesList);
+                        System.out.println(playerArrayList.get(playerIndex).getPropertiesList());
                     step(playerArrayList, squareArrayList, otherPlayerIndex);
                 case 2:
                     step(playerArrayList, squareArrayList, otherPlayerIndex);
@@ -127,6 +128,8 @@ public class Service {
         }
     }
 
+
+
     private int getDiceSum() {
         return new Dice().getDiceNumber() + new Dice().getDiceNumber();
     }
@@ -137,12 +140,12 @@ public class Service {
             for (int i = 0; i < playerArrayList.size(); i++) {
                 System.out.println("Игрок №" + playerArrayList.get(i).getPlayerID() + " " + playerArrayList.get(i).getName() + "\n");
                 System.out.println("Баланс: " + playerArrayList.get(i).getCash() + " " + "\n");
-                System.out.println("Текущая позиция: " + "[" + playerArrayList.get(i).getSpaceNum() + "] " + squareArrayList.get(playerArrayList.get(i).getSpaceNum()).name);
+                System.out.println("Текущая позиция: " + "[" + playerArrayList.get(i).getSpaceNum() + "] " + squareArrayList.get(playerArrayList.get(i).getSpaceNum()).getName());
                 System.out.print("Текущие владения: ");
-                if (playerArrayList.get(i).propertiesList.isEmpty())
+                if (playerArrayList.get(i).getPropertiesList().isEmpty())
                     System.out.println("Нету");
                 else
-                    System.out.println(playerArrayList.get(i).propertiesList);
+                    System.out.println(playerArrayList.get(i).getPropertiesList());
                 System.out.println("------------------------------------------------------------");
             }
             break;
@@ -154,10 +157,12 @@ public class Service {
         while (playerArrayList.size() < 2) {
             System.out.println("Введите имя игрока:");
             String nme = scanner.nextLine();
-            playerArrayList.add(new Player(playerArrayList.size(), nme));
+            playerAdd(playerArrayList, nme);
         }
         System.out.println("------------------------------------------------------------");
     }
+
+
 
     private int getQueue() {
         System.out.println("Определяем очередь: ");
@@ -172,6 +177,10 @@ public class Service {
         }
     }
 
+    private void playerAdd(ArrayList<Player> playerArrayList, String nme) {
+        playerArrayList.add(new Player(playerArrayList.size(), nme,2500));
+    }
+
     private void payRent(int rent, Player player, Player otherPlayer) {
         player.changeCash(-rent);
         otherPlayer.changeCash(rent);
@@ -179,24 +188,25 @@ public class Service {
 
     private int getRent(RealEstate realEstate, int diceValue) {
         int finalRent;
-        if (realEstate.rent == 1) {
+        if (realEstate.getRent() == 1) {
             finalRent = 4 * diceValue;
             return finalRent;
         } else
-            return realEstate.rent;
+            return realEstate.getRent();
     }
 
     public void setProperty(Player player, RealEstate realEstate) {
         if (!isProperty(realEstate)) {
-            realEstate.propertyOf = player.getPlayerID();
-            realEstate.property = true;
-            player.changeCash(-realEstate.cost);
-            player.propertiesList.add(realEstate);
+            realEstate.setPropertyOf(player.getPlayerID());
+            realEstate.setProperty(true);
+            player.changeCash(-realEstate.getCost());
+            player.addRealEstate(realEstate);
         }
     }
 
     public boolean isProperty(RealEstate realEstate) {
-        return realEstate.property;
+
+        return realEstate.isProperty();
     }
 
 }

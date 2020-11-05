@@ -1,4 +1,4 @@
-package com.company;
+package com.company.model;
 
 import java.util.ArrayList;
 
@@ -11,12 +11,13 @@ public class Player {
     private String name;
 
 
-    public Player(int playerID, String name) {
-        totalCash = 2500;
+    public Player(int playerID, String name, int totalCash) {
+        this.totalCash = totalCash;
         this.name = name;
         this.playerID = playerID;
         spaceNum=0;
     }
+
 
     public int getCash() {
 
@@ -28,21 +29,16 @@ public class Player {
         totalCash += cash;
     }
 
-    ArrayList<RealEstate> propertiesList = new ArrayList<>();
+    private ArrayList<RealEstate> propertiesList = new ArrayList<>();
 
-    public int getTotalAssets() {
-        return totalAssets;
+    public ArrayList<RealEstate> getPropertiesList() {
+        return propertiesList;
     }
 
-    public void setTurn(boolean turn) {
-
-        isTurn = turn;
+    public void addRealEstate(RealEstate realEstate) {
+        propertiesList.add(realEstate);
     }
 
-    public boolean isTurn() {
-
-        return isTurn;
-    }
 
     public int getSpaceNum() {
 

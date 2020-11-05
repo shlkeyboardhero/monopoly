@@ -1,4 +1,8 @@
-package com.company;
+package com.company.view;
+
+import com.company.model.GameField;
+import com.company.model.Player;
+import com.company.service.Service;
 
 import java.util.ArrayList;
 

@@ -1,9 +1,12 @@
-package com.company;
+package com.company.model;
+
+import com.company.model.GameField;
+import com.company.model.Player;
 
 public class ServiceGameField extends GameField {
 
-    ServiceGameField(String name) {
-        this.name=name;
+    public ServiceGameField(String name) {
+        setName(name);
     }
 
     public void payForward(Player player) {

@@ -1,5 +1,5 @@
-package com.company;
-import org.w3c.dom.ls.LSOutput;
+package com.company.view;
+import com.company.model.Player;
 
 import javax.swing.*;
 import java.util.ArrayList;
@@ -20,7 +20,7 @@ public class Game {
 
 
     public void addPlayer(String name) {
-        playerArrayList.add(new Player(playerArrayList.size(), name));
+        //playerArrayList.add(new Player(playerArrayList.size(), name));
         if (!playerArrayList.isEmpty()) {
             lbl.setVisible(false);
             lbl1.setVisible(true);
