@@ -1,0 +1,27 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.scene.control.Button?>
+<?import javafx.scene.image.Image?>
+<?import javafx.scene.image.ImageView?>
+<?import javafx.scene.layout.AnchorPane?>
+<?import javafx.scene.text.Font?>
+
+<AnchorPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="721.0" prefWidth="1101.0" xmlns="http://javafx.com/javafx/11.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="com.company.view.RuleController">
+   <children>
+      <ImageView fitHeight="321.0" fitWidth="880.0" layoutX="111.0" layoutY="26.0" pickOnBounds="true" preserveRatio="true">
+         <image>
+            <Image url="@monopoly.png" />
+         </image>
+      </ImageView>
+      <Button fx:id="play" layoutX="127.0" layoutY="401.0" mnemonicParsing="false" onAction="#initialize" prefHeight="130.0" prefWidth="338.0" text="Играть" textFill="#e11111">
+         <font>
+            <Font name="Arial" size="38.0" />
+         </font>
+      </Button>
+      <Button fx:id="rules" layoutX="637.0" layoutY="401.0" mnemonicParsing="false" onAction="#initialize" prefHeight="130.0" prefWidth="338.0" text="Правила" textFill="#e11111">
+         <font>
+            <Font name="Arial" size="38.0" />
+         </font>
+      </Button>
+   </children>
+</AnchorPane>
