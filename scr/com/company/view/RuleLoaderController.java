@@ -1,5 +1,6 @@
 package com.company.view;
 
+import com.company.controller.Controller;
 import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
 import javafx.scene.Node;
@@ -12,7 +13,7 @@ import java.io.IOException;
 import java.net.URL;
 import java.util.ResourceBundle;
 
-public class RuleController {
+public class RuleLoaderController {
 
     @FXML
     private ResourceBundle resources;
@@ -21,22 +22,32 @@ public class RuleController {
     private URL location;
 
     @FXML
-    private Button ponyatnoButton;
+    private Button understandButton;
+    private Controller gameController;
 
     @FXML
     void initialize() {
-        ponyatnoButton.setOnAction(event -> {
-            Parent root = null;
+        understandButton.setOnAction(event -> {
+            /*Parent root = null;
             try {
                 root = FXMLLoader.load(getClass().getResource("menu.fxml"));
             } catch (IOException e) {
                 e.printStackTrace();
             }
             Scene scene1 = new Scene(root);
-            Stage primaryStage = (Stage) ((Node) event.getSource()).getScene().getWindow();
             primaryStage.setScene(scene1);
-            primaryStage.show();
+            primaryStage.show();*/
+            try {
+                Stage primaryStage = (Stage) ((Node) event.getSource()).getScene().getWindow();
+                gameController.createMenuView(primaryStage);
+            }
+            catch (IOException e) {
+                e.printStackTrace();
+            }
         });
     }
 
+    public void setGameController(Controller controller) {
+        this.gameController = controller;
+    }
 }

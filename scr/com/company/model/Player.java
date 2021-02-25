@@ -1,23 +1,36 @@
 package com.company.model;
 
+import javafx.scene.paint.Color;
+import javafx.scene.paint.Paint;
+
 import java.util.ArrayList;
 
 public class Player {
     private int totalCash;
-    private int totalAssets;
     private int spaceNum;
     private int playerID;
-    private boolean isTurn = false;
     private String name;
+    private Color color;
 
 
-    public Player(int playerID, String name, int totalCash) {
+    public Player(String name, int totalCash, Color color) {
         this.totalCash = totalCash;
         this.name = name;
-        this.playerID = playerID;
+        playerID = 0;
         spaceNum=0;
+        this.color = color;
     }
 
+
+    private ArrayList<RealEstate> propertiesList = new ArrayList<>();
+
+    public ArrayList<RealEstate> getPropertiesList() {
+        return propertiesList;
+    }
+
+    public void addRealEstate(RealEstate realEstate) {
+        propertiesList.add(realEstate);
+    }
 
     public int getCash() {
 
@@ -29,15 +42,7 @@ public class Player {
         totalCash += cash;
     }
 
-    private ArrayList<RealEstate> propertiesList = new ArrayList<>();
 
-    public ArrayList<RealEstate> getPropertiesList() {
-        return propertiesList;
-    }
-
-    public void addRealEstate(RealEstate realEstate) {
-        propertiesList.add(realEstate);
-    }
 
 
     public int getSpaceNum() {
@@ -54,10 +59,10 @@ public class Player {
         return playerID;
     }
 
-    public void setPlayerID(int playerID) {
-
-        this.playerID = playerID;
+    public void setPlayerID(int id) {
+        playerID = id;
     }
+
 
     public String toString() {
         return String.valueOf(playerID) + ' ' +  name;
@@ -66,4 +71,5 @@ public class Player {
     public String getName() {
         return name;
     }
+
 }

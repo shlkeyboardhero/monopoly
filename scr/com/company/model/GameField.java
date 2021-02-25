@@ -1,6 +1,9 @@
 package com.company.model;
 
+import java.util.ArrayList;
+
 public class GameField {
+
     private String name;
 
     public String toString() {

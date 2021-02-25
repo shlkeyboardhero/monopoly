@@ -8,9 +8,9 @@ public class Dice {
         return getRandom();
     }
 
-    public int getRandom() {
+    private int getRandom() {
         int rnd;
-        rnd = (int) (1 + Math.random() * 5);
+        rnd = (int) (1 + Math.random() * 11);
         return rnd;
     }
 

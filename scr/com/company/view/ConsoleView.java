@@ -1,17 +1,18 @@
 package com.company.view;
 
+import com.company.controller.SetQueue;
 import com.company.model.Dice;
 import com.company.model.GameField;
 import com.company.model.Player;
 import com.company.model.RealEstate;
-import com.company.service.Service;
+import com.company.controller.Controller;
 
 import java.util.ArrayList;
 import java.util.Scanner;
 
 
 
-public class ConsoleView extends Service {
+public class ConsoleView extends Controller {
 
     public void consoleRealization(ArrayList<Player> playerArrayList, ArrayList<GameField> squareArrayList) {
         playerCreate(playerArrayList);
@@ -33,7 +34,7 @@ public class ConsoleView extends Service {
 
     Scanner scanner = new Scanner(System.in);
     private void step(ArrayList<Player> playerArrayList, ArrayList<GameField> squareArrayList, int queue) {
-        Service.SetQueue setQueue = new Service.SetQueue(queue).invoke();
+        SetQueue setQueue = new SetQueue(queue).invoke();
         int diceSum = setQueue.getDiceSum();
         int playerIndex = setQueue.getPlayerIndex();
         int otherPlayerIndex = setQueue.getOtherPlayerIndex();
@@ -112,7 +113,7 @@ public class ConsoleView extends Service {
         while (playerArrayList.size() < 2) {
             System.out.println("Введите имя игрока:");
             String nme = scanner.nextLine();
-            playerAdd(playerArrayList, nme);
+            playerAdd(nme);
         }
         System.out.println("------------------------------------------------------------");
     }
