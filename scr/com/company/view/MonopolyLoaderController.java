@@ -60,21 +60,34 @@ public class MonopolyLoaderController {
                 nextPlayer.setDisable(false);
                 dice.setDisable(true);
                 notification.setText("Игрок " + gameController.getCurrentPlayer().getName() +
-                        "бросает кубик для определения хода: "+ gameController.getCurrentPlayer().getPlayerID());
+                        " бросает кубик для определения хода: "+ gameController.getCurrentPlayer().getPlayerID());
             }
             else {
-
+                switchPos(gameController.dice());
+                dice.setDisable(true);
                 playerInfo.setText(gameController.getPlayerInfo());
             }
+
         });
 
 
         nextPlayer.setOnAction(event -> {
             if (!gameController.getGameStart())
                 initPlayers();
-            //else
-                //gameController.getCurrentPlayer().setPlayerID();
+            else {
+                gameController.setNextPlayer();
+                game();
+            }
         });
+
+        payRent.setOnAction(event -> {
+
+        });
+
+        buy.setOnAction(event -> {
+
+        });
+
     }
 
     public void monopolyGame() {
@@ -84,6 +97,8 @@ public class MonopolyLoaderController {
                 panesArray.add(((Pane) (node)));
             }
         }
+
+
 
         if (gameController.getPlayerArrayList().size() == 1) {
             Circle firstPlayer;
@@ -117,7 +132,6 @@ public class MonopolyLoaderController {
     }
 
     public void initPlayers(){
-
         Player currentNotInitPlayer = gameController.getNotInitPlayer();
         if (currentNotInitPlayer != null) {
             gameController.setCurrentPlayer(currentNotInitPlayer);
@@ -136,10 +150,23 @@ public class MonopolyLoaderController {
     }
 
     public void game(){
+        dice.setDisable(false);
 
     }
 
+    public void switchPos(int diceNum){
+        Player currentPlayer = gameController.getCurrentPlayer();
+        int newPos = currentPlayer.getSpaceNum() + diceNum;
+        for (int i = 0; i < playerDots.size(); i++){
+            if (playerDots.get(i).getFill().equals(currentPlayer.getColor())){
+                panesArray.get(currentPlayer.getSpaceNum()).getChildren().remove(playerDots.get(i));
+                currentPlayer.setSpaceNum(newPos);
+                panesArray.get(newPos).getChildren().add(playerDots.get(i));
+            }
 
+        }
+
+    }
 
     /*
     private Pane getNodeFromGridPane(GridPane gridPane, int arrayNumber) {

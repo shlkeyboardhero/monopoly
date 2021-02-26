@@ -11,6 +11,7 @@ import javafx.scene.Parent;
 import javafx.scene.Scene;
 import javafx.scene.paint.Color;
 import javafx.scene.paint.Paint;
+import javafx.scene.shape.Circle;
 import javafx.stage.Stage;
 
 import java.io.IOException;
@@ -20,11 +21,9 @@ import java.util.*;
 public class Controller {
     private Dice dice = new Dice();
     private Player currentPlayer = null;
-    private int tempStep = 0;
 
     private boolean gameStart = false;
 
-    private List<Integer> queueRes = new ArrayList<>();
 
     private ArrayList<Player> playerArrayList = new ArrayList<>(4);
     private ArrayList<GameField> squareArrayList = new ArrayList<>();
@@ -91,6 +90,7 @@ public class Controller {
             e.printStackTrace();
         }
     }
+
 
     public void createBoardView (Stage primaryStage) throws IOException {
         Parent root = null;
@@ -186,14 +186,6 @@ public class Controller {
     //new Game().start();
 
 
-    public void setTempStep(int temp) {
-        tempStep = temp;
-    }
-
-    public int getTempStep(){
-        return tempStep;
-    }
-
     public Player getCurrentPlayer(){
         return currentPlayer;
     }
@@ -215,15 +207,14 @@ public class Controller {
     }
 
     private Color setColor(){
-        if (playerArrayList.size() == 0){
+        if (playerArrayList.size() == 0)
             return Color.RED;
-        }
-        else
-            if (playerArrayList.size() == 1){
+        else {
+            if (playerArrayList.size() == 1)
                 return Color.BLUE;
-            }
-        else
-            return Color.GREEN;
+            else
+                return Color.GREEN;
+        }
     }
 
     public void payRent(int rent, Player player, Player otherPlayer) {
@@ -263,9 +254,13 @@ public class Controller {
         return stringInfo;
     }
 
-    public void changePlayerPos(int i){
-        getCurrentPlayer().setSpaceNum(getCurrentPlayer().getSpaceNum()+i);
+    public void setNextPlayer(){
+        int nextPlayerIndex;
+        nextPlayerIndex = (playerArrayList.indexOf(getCurrentPlayer()) + 1) % playerArrayList.size();
+        setCurrentPlayer(playerArrayList.get(nextPlayerIndex));
     }
+
+
 
     public void setQueue() {
         Comparator<Player> playerComparator = new Comparator<Player>() {
@@ -280,6 +275,7 @@ public class Controller {
     }
 
 
+
     public Player getNotInitPlayer() {
         for (int i = 0; i < playerArrayList.size(); i++) {
             if (playerArrayList.get(i).getPlayerID() == 0){
@@ -288,6 +284,8 @@ public class Controller {
         }
         return null;
     }
+
+
 }
 
 

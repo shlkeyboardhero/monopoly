@@ -13,6 +13,10 @@ public class Player {
     private Color color;
 
 
+    public Color getColor() {
+        return color;
+    }
+
     public Player(String name, int totalCash, Color color) {
         this.totalCash = totalCash;
         this.name = name;

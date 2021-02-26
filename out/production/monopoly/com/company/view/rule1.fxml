@@ -1,0 +1,43 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.scene.control.Button?>
+<?import javafx.scene.image.Image?>
+<?import javafx.scene.image.ImageView?>
+<?import javafx.scene.layout.AnchorPane?>
+<?import javafx.scene.text.Font?>
+<?import javafx.scene.text.Text?>
+
+<AnchorPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="721.0" prefWidth="1101.0" xmlns="http://javafx.com/javafx/11.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="com.company.view.RuleLoaderController">
+   <children>
+      <ImageView fitHeight="321.0" fitWidth="880.0" layoutX="111.0" layoutY="26.0" pickOnBounds="true" preserveRatio="true">
+         <image>
+            <Image url="@monopoly.png" />
+         </image>
+      </ImageView>
+      <Text layoutX="430.0" layoutY="373.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Правила игры">
+         <font>
+            <Font name="Arial Bold" size="38.0" />
+         </font>
+      </Text>
+      <Text layoutX="201.0" layoutY="431.0" strokeType="OUTSIDE" strokeWidth="0.0" text="1. Первый ход определяется автоматически">
+         <font>
+            <Font size="22.0" />
+         </font>
+      </Text>
+      <Text layoutX="201.0" layoutY="477.0" strokeType="OUTSIDE" strokeWidth="0.0" text="2. После каждого броска вам будет предложено купить собственность, если она никому не принадлежит, иначе вам придется заплатить ренту." wrappingWidth="749.7001953125">
+         <font>
+            <Font size="22.0" />
+         </font>
+      </Text>
+      <Button fx:id="understandButton" layoutX="432.0" layoutY="603.0" mnemonicParsing="false" onAction="#initialize" prefHeight="59.0" prefWidth="238.0" text="Понятно" textFill="#e11111">
+         <font>
+            <Font name="Arial" size="26.0" />
+         </font>
+      </Button>
+      <Text layoutX="201.0" layoutY="553.0" strokeType="OUTSIDE" strokeWidth="0.0" text="3. Не больше 3 игроков" wrappingWidth="749.7001953125">
+         <font>
+            <Font size="22.0" />
+         </font>
+      </Text>
+   </children>
+</AnchorPane>
