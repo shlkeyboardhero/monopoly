@@ -10,7 +10,7 @@ public class Dice {
 
     private int getRandom() {
         int rnd;
-        rnd = (int) (1 + Math.random() * 11);
+        rnd = (int) (2 + Math.random() * 10);
         return rnd;
     }
 

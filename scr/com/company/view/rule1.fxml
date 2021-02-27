@@ -14,27 +14,32 @@
             <Image url="@monopoly.png" />
          </image>
       </ImageView>
-      <Text layoutX="430.0" layoutY="373.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Правила игры">
+      <Text layoutX="416.0" layoutY="343.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Правила игры">
          <font>
             <Font name="Arial Bold" size="38.0" />
          </font>
       </Text>
-      <Text layoutX="201.0" layoutY="431.0" strokeType="OUTSIDE" strokeWidth="0.0" text="1. Первый ход определяется автоматически">
+      <Text layoutX="18.0" layoutY="400.0" strokeType="OUTSIDE" strokeWidth="0.0" text="1. Броски для определения очереди осуществляются соответсвенно порядку введния игроков в список! ">
          <font>
             <Font size="22.0" />
          </font>
       </Text>
-      <Text layoutX="201.0" layoutY="477.0" strokeType="OUTSIDE" strokeWidth="0.0" text="2. После каждого броска вам будет предложено купить собственность, если она никому не принадлежит, иначе вам придется заплатить ренту." wrappingWidth="749.7001953125">
+      <Text layoutX="67.0" layoutY="448.0" strokeType="OUTSIDE" strokeWidth="0.0" text="2. После каждого броска вам будет предложено купить собственность, если она никому не принадлежит, иначе вам придется заплатить ренту." wrappingWidth="965.7001953125">
          <font>
             <Font size="22.0" />
          </font>
       </Text>
-      <Button fx:id="understandButton" layoutX="432.0" layoutY="603.0" mnemonicParsing="false" onAction="#initialize" prefHeight="59.0" prefWidth="238.0" text="Понятно" textFill="#e11111">
+      <Button fx:id="understandButton" layoutX="431.0" layoutY="602.0" mnemonicParsing="false" onAction="#initialize" prefHeight="59.0" prefWidth="238.0" text="Понятно" textFill="#e11111">
          <font>
             <Font name="Arial" size="26.0" />
          </font>
       </Button>
-      <Text layoutX="201.0" layoutY="553.0" strokeType="OUTSIDE" strokeWidth="0.0" text="3. Не больше 3 игроков" wrappingWidth="749.7001953125">
+      <Text layoutX="424.0" layoutY="570.0" strokeType="OUTSIDE" strokeWidth="0.0" text="4. Не больше 3 игроков" wrappingWidth="251.7001953125">
+         <font>
+            <Font size="22.0" />
+         </font>
+      </Text>
+      <Text layoutX="152.0" layoutY="521.0" strokeType="OUTSIDE" strokeWidth="0.0" text="3. Вознаграждение из шансов и общественной казны определяется случайно" wrappingWidth="794.7001953125">
          <font>
             <Font size="22.0" />
          </font>

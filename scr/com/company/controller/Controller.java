@@ -26,6 +26,9 @@ public class Controller {
 
 
     private ArrayList<Player> playerArrayList = new ArrayList<>(4);
+
+
+
     private ArrayList<GameField> squareArrayList = new ArrayList<>();
     private ArrayList<ChanceField> chanceArray = new ArrayList<>(5);
 
@@ -44,7 +47,6 @@ public class Controller {
             primaryStage.setScene(new Scene(root, 1100, 720));
             primaryStage.setResizable(false);
             primaryStage.show();
-            setChanceArray();
             createFields();
         } catch (IOException e) {
             e.printStackTrace();
@@ -121,29 +123,29 @@ public class Controller {
     }
 
     public void createFields() {
-        squareArrayList.add(new ServiceGameField("Вперед"));
+        squareArrayList.add(new ServiceGameField("Вперед", "получает 200.", 200));
         squareArrayList.add(new Street("Ул. Житная", 60, 2));
-        squareArrayList.add(new ChanceField("Подоходный налог: заплатите 200.", 200,0));
+        squareArrayList.add(new ChanceField("Общественная казна №1"));
         squareArrayList.add(new Street("Ул. Нагатинская", 60, 4));
-        squareArrayList.add(getChanceArray().get(4));
+        squareArrayList.add(new ServiceGameField("Подоходный налог","заплатить 200.", -200));
         squareArrayList.add(new Railway("Рижская железная дорога", 200, 25));
         squareArrayList.add(new Street("Варшавское шоссе", 100, 6));
-        squareArrayList.add(getChanceArray().get((int) (Math.random() * getChanceArray().size())));
+        squareArrayList.add(new ChanceField("Шанс№1"));
         squareArrayList.add(new Street("Ул. Огорева", 100, 6));
         squareArrayList.add(new Street("Ул. Первая Парковая", 120, 8));
-        squareArrayList.add(new ServiceGameField("Тюрьма"));
+        squareArrayList.add(new ServiceGameField("Тюрьма", "просто поситить ее."));
         squareArrayList.add(new Street("Ул. Полянка", 140, 10));
         squareArrayList.add(new PublicService("Электростанция", 150));
         squareArrayList.add(new Street("Ул. Сретенка", 140, 10));
         squareArrayList.add(new Street("Ростовкая набережная", 160, 12));
         squareArrayList.add(new Railway("Курская железная дорога", 200, 25));
         squareArrayList.add(new Street("Рязанский проспект", 180, 14));
-        //squareArrayList.add(new );
+        squareArrayList.add(new ChanceField("Общественная казна №2"));
         squareArrayList.add(new Street("Ул. Вавилова", 180, 14));
         squareArrayList.add(new Street("Рублевское шоссе", 200, 16));
-        //squareArrayList.add(new );
+        squareArrayList.add(new ServiceGameField("Стоянка","остановился отдохнуть."));
         squareArrayList.add(new Street("Ул. Тверская", 220, 18));
-        //squareArrayList.add(new );
+        squareArrayList.add(new ChanceField("Шанс №2"));
         squareArrayList.add(new Street("Ул. Пушкинская", 220, 18));
         squareArrayList.add(new Street("Площадь Маяковская", 240, 20));
         squareArrayList.add(new Railway("Казанская железная дорога", 200, 25));
@@ -151,17 +153,22 @@ public class Controller {
         squareArrayList.add(new Street("Новинский бульвар", 260, 22));
         squareArrayList.add(new PublicService("Водопровод", 150));
         squareArrayList.add(new Street("Смоленская Площадь", 280, 24));
-        //squareArrayList.add(new );
+        squareArrayList.add(new ServiceGameField("Ссылка в тюрьму", "отправиться в тюрьму, но она не работает."));
         squareArrayList.add(new Street("Ул. Щусева", 300, 26));
         squareArrayList.add(new Street("Гоголевский проспект", 300, 26));
-        //squareArrayList.add(new );
+        squareArrayList.add(new ChanceField("Общественная казна №3"));
         squareArrayList.add(new Street("Кутозовский проспект", 320, 28));
         squareArrayList.add(new Railway("Ленинская железная дорога", 200, 25));
+        squareArrayList.add(new ChanceField("Шанс №3"));
         squareArrayList.add(new Street("Ул. Малая бронная", 350, 35));
-        //squareArrayList.add(new ServiceGameField("Сверхналог"));
+        squareArrayList.add(new ServiceGameField("Сверхналог","заплотить 200.", -200));
         squareArrayList.add(new Street("Ул. Арбат", 400, 50));
 
 
+    }
+
+    public ArrayList<GameField> getSquareArrayList() {
+        return squareArrayList;
     }
 
     public void setGameStart(boolean tf){
@@ -172,13 +179,8 @@ public class Controller {
         return gameStart;
     }
 
-    private void setChanceArray() {
-        chanceArray.add(new ChanceField("Вернитесь на 3 поля назад", 0, -3 ));
-        chanceArray.add(new ChanceField("Банк платит девиденды в размере 50", 50, 0));
-        chanceArray.add(new ChanceField("Ссуда на строительство получите 150", 150, 0 ));
-        chanceArray.add(new ChanceField("Изберательная кампания, заплатите 50 каждому игроку", 50, -3 ));
-        chanceArray.add(new ChanceField("Подоходный налог: заплатите 200.", 200,0));
-    }
+
+
 
 
 
@@ -222,6 +224,10 @@ public class Controller {
         otherPlayer.changeCash(rent);
     }
 
+    public void payRent(int dice) {
+        payRent(getRent(returnRealEstate(), dice), getCurrentPlayer(), getPropertyOf());
+    }
+
     public int getRent(RealEstate realEstate, int diceValue) {
         int finalRent;
         if (realEstate.getRent() == 1) {
@@ -231,13 +237,29 @@ public class Controller {
             return realEstate.getRent();
     }
 
+    public RealEstate returnRealEstate(){
+        return (RealEstate) getSquareArrayList().get(getCurrentPlayer().getSpaceNum());
+    }
+
     public void setProperty(Player player, RealEstate realEstate) {
         if (!isProperty(realEstate)) {
-            realEstate.setPropertyOf(player.getPlayerID());
+            realEstate.setPropertyOf(player);
             realEstate.setProperty(true);
             player.changeCash(-realEstate.getCost());
             player.addRealEstate(realEstate);
         }
+    }
+
+    public GameField getTypeOfField(){
+        return getSquareArrayList().get(getCurrentPlayer().getSpaceNum());
+    }
+
+    public Player getPropertyOf(){
+        return ((RealEstate) (squareArrayList.get(currentPlayer.getSpaceNum()))).getPropertyOf();
+    }
+
+    public boolean isProperty(){
+        return isProperty(((RealEstate) squareArrayList.get(currentPlayer.getSpaceNum())));
     }
 
     public boolean isProperty(RealEstate realEstate) {
@@ -245,10 +267,12 @@ public class Controller {
         return realEstate.isProperty();
     }
 
+
     public String getPlayerInfo(){
         String stringInfo;
         stringInfo = ("Имя игрока: " + getCurrentPlayer().getName() +
-                "\nТекущаю позиция: " + getCurrentPlayer().getSpaceNum() +
+                "\nТекущаю позиция: " + getCurrentPlayer().getSpaceNum() + " - " +
+                squareArrayList.get(getCurrentPlayer().getSpaceNum()).getName() +
                 "\nТекущий баланс: " + getCurrentPlayer().getCash() +
                 "\nТекущие владения: " + getCurrentPlayer().getPropertiesList());
         return stringInfo;
@@ -260,7 +284,9 @@ public class Controller {
         setCurrentPlayer(playerArrayList.get(nextPlayerIndex));
     }
 
-
+    public int setNewPos(int dice){
+        return (currentPlayer.getSpaceNum() + dice) % 40;
+    }
 
     public void setQueue() {
         Comparator<Player> playerComparator = new Comparator<Player>() {
@@ -273,6 +299,7 @@ public class Controller {
 
         Collections.sort(playerArrayList, Collections.reverseOrder(playerComparator));
     }
+
 
 
 

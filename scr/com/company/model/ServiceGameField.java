@@ -5,15 +5,34 @@ import com.company.model.Player;
 
 public class ServiceGameField extends GameField {
 
-    public ServiceGameField(String name) {
-        setName(name);
+    @Override
+    public String getName() {
+        return name;
     }
 
-    public void payForward(Player player) {
-        player.changeCash(200);
+    String name;
+
+
+    String text;
+    int money;
+
+    public ServiceGameField(String name, String text, int money) {
+        this.name = name;
+        this.text = text;
+        this.money = money;
     }
 
-    public void payExact(Player player) {
-        player.changeCash(-200);
+    public String getText() {
+        return text;
+    }
+
+    public ServiceGameField(String name, String text) {
+        this.name = name;
+        this.text = text;
+    }
+
+
+    public void payMoney(Player player) {
+        player.changeCash(money);
     }
 }

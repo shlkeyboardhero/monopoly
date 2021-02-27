@@ -5,7 +5,7 @@ public class RealEstate extends GameField {
     private int cost;
     private int rent;
     private boolean property = false;
-    private int propertyOf;
+    private Player propertyOf;
 
     public int getCost() {
         return cost;
@@ -31,11 +31,11 @@ public class RealEstate extends GameField {
         this.property = property;
     }
 
-    public int getPropertyOf() {
+    public Player getPropertyOf() {
         return propertyOf;
     }
 
-    public void setPropertyOf(int propertyOf) {
+    public void setPropertyOf(Player propertyOf) {
         this.propertyOf = propertyOf;
     }
 }
