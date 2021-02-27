@@ -89,6 +89,7 @@ public class MonopolyLoaderController {
                 playerInfo.setText(gameController.getPlayerInfo());
                 dice.setDisable(false);
                 nextPlayer.setDisable(true);
+                buy.setDisable(true);
             }
         });
 
