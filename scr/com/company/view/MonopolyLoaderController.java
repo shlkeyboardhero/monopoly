@@ -181,12 +181,14 @@ public class MonopolyLoaderController {
                 notification.appendText("\nЦена: "+ gameController.returnRealEstate().getCost());
                 buy.setDisable(false);
                 nextPlayer.setDisable(false);
+                payRent.setDisable(true);
             } else {
                 notification.appendText("\nЭто поле собственность игрока " + gameController.getPropertyOf().getName() +
                         "\nЗаплатите ренту!");
                 notification.appendText("\nРента: "+ gameController.returnRealEstate().getRent());
                 nextPlayer.setDisable(true);
                 payRent.setDisable(false);
+                buy.setDisable(true);
             }
         }
         else {
